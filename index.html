@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infinite Smile | Gestión Dental</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6f8;color:#263b4b}
+header{background:#193b59;color:white;padding:20px 28px;display:flex;justify-content:space-between;align-items:center}
+header h1{margin:0;font-size:23px}header small{color:#cbdce8}
+.layout{display:grid;grid-template-columns:205px 1fr;min-height:90vh}
+aside{background:#203d59;padding:22px 14px;color:white}
+aside h3{font-size:15px;margin:5px 8px 25px}
+nav button{display:block;width:100%;padding:14px;text-align:left;border:0;background:transparent;color:white;cursor:pointer;border-radius:5px;margin-bottom:5px}
+nav button:hover,nav button.active{background:#527d9c}
+main{padding:25px;min-width:0}
+h2{color:#193b59;margin-top:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.kpi{padding:18px;border-radius:7px;color:white;background:#193b59}
+.kpi:nth-child(2){background:#285878}.kpi:nth-child(3){background:#397b9e}.kpi:nth-child(4){background:#dce9f1;color:#193b59}
+.kpi span{font-size:12px}.kpi strong{display:block;font-size:27px;margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.card{background:white;border:1px solid #dfe6eb;border-radius:7px;padding:18px;margin-bottom:15px}
+.card h3{font-size:15px;color:#193b59;margin-top:0}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:left;padding:11px 7px;border-bottom:1px solid #e7edf1}
+th{color:#617889}
+button.primary{background:#398c83;color:white;border:0;padding:10px 15px;border-radius:5px;cursor:pointer}
+input,select{padding:10px;border:1px solid #ccd8df;border-radius:5px;width:100%;margin:5px 0 12px}
+label{font-size:12px;color:#536b7c}
+.section{display:none}.section.active{display:block}
+.tag{background:#e6f2ee;color:#28735e;padding:5px 9px;border-radius:15px;font-size:11px}
+.bar{height:12px;background:#e9eff3;border-radius:8px;margin:10px 0}
+.bar i{display:block;height:12px;background:#5795b5;border-radius:8px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}aside{padding:10px}.kpi strong{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>∞ Infinite Smile</h1><small>Gestión inteligente de agenda dental</small></div>
+  <div>Dra. Angélica | Virginia</div>
+</header>
+<div class="layout">
+<aside>
+<h3>INFINITE SMILE</h3>
+<nav>
+<button class="active" onclick="show('inicio',this)">▦ Resumen ejecutivo</button>
+<button onclick="show('pacientes',this)">◷ Lista de espera</button>
+<button onclick="show('espacios',this)">＋ Espacios disponibles</button>
+<button onclick="show('metricas',this)">▤ Indicadores</button>
+</nav>
+</aside>
+<main>
+<section id="inicio" class="section active">
+<h2>Resumen ejecutivo</h2>
+<p>Control de pacientes, disponibilidad y recuperación de citas.</p>
+<div class="kpis">
+<div class="kpi"><span>Pacientes en espera</span><strong id="totalP">3</strong></div>
+<div class="kpi"><span>Espacios disponibles</span><strong id="totalE">2</strong></div>
+<div class="kpi"><span>Citas recuperadas</span><strong id="totalR">0</strong></div>
+<div class="kpi"><span>Tasa de recuperación</span><strong id="tasa">0%</strong></div>
+</div>
+<div class="grid">
+<div class="card"><h3>Actividad de pacientes</h3>
+<p>Tratamientos registrados</p>
+<div>Limpieza<div class="bar"><i style="width:65%"></i></div></div>
+<div>Ortodoncia<div class="bar"><i style="width:35%"></i></div></div>
+<div>Resina<div class="bar"><i style="width:50%"></i></div></div>
+</div>
+<div class="card"><h3>Próximos espacios</h3>
+<table><tr><th>Fecha</th><th>Hora</th><th>Duración</th></tr>
+<tr><td>Próximo día</td><td>09:00</td><td>60 min</td></tr>
+<tr><td>En dos días</td><td>15:00</td><td>90 min</td></tr></table>
+</div>
+</div>
+<div class="card"><h3>Objetivo del consultorio</h3>
+<p>Reducir espacios perdidos por cancelaciones y mejorar la continuidad de los tratamientos dentales.</p>
+<span class="tag">Prototipo académico</span>
+</div>
+</section>
+
+<section id="pacientes" class="section">
+<h2>Lista de espera inteligente</h2>
+<div class="grid">
+<div class="card">
+<h3>Registrar paciente</h3>
+<form id="formPaciente">
+<label>Nombre completo *</label><input id="nombre" required>
+<label>Teléfono *</label><input id="telefono" required>
+<label>Tratamiento *</label>
+<select id="tratamiento" required><option value="">Seleccionar</option><option>Limpieza</option><option>Ortodoncia</option><option>Endodoncia</option><option>Resina</option><option>Revisión</option></select>
+<label>Duración requerida *</label>
+<select id="duracion" required><option value="">Seleccionar</option><option value="30">30 minutos</option><option value="45">45 minutos</option><option value="60">60 minutos</option><option value="90">90 minutos</option></select>
+<label>Horario preferido *</label>
+<select id="horario" required><option value="">Seleccionar</option><option>Mañana</option><option>Tarde</option><option>Cualquier horario</option></select>
+<button class="primary" type="submit">Agregar a lista</button>
+</form>
+</div>
+<div class="card"><h3>Pacientes registrados</h3>
+<table><thead><tr><th>Paciente</th><th>Tratamiento</th><th>Estado</th></tr></thead>
+<tbody id="tablaPacientes">
+<tr><td>Sofía Hernández</td><td>Limpieza</td><td>En espera</td></tr>
+<tr><td>Carlos Méndez</td><td>Resina</td><td>En espera</td></tr>
+<tr><td>Valeria Torres</td><td>Ortodoncia</td><td>En espera</td></tr>
+</tbody></table>
+</div>
+</div>
+</section>
+
+<section id="espacios" class="section">
+<h2>Espacios disponibles</h2>
+<div class="card">
+<h3>Registrar espacio liberado</h3>
+<form id="formEspacio">
+<label>Fecha</label><input id="fecha" type="date" required>
+<label>Hora</label><input id="hora" type="time" required>
+<label>Duración disponible</label>
+<select id="minutos"><option value="30">30 minutos</option><option value="45">45 minutos</option><option value="60">60 minutos</option><option value="90">90 minutos</option></select>
+<button class="primary" type="submit">Registrar espacio</button>
+</form>
+</div>
+<div class="card"><h3>Agenda liberada</h3>
+<table><thead><tr><th>Fecha</th><th>Hora</th><th>Duración</th><th>Estado</th></tr></thead>
+<tbody id="tablaEspacios">
+<tr><td>Próximo día</td><td>09:00</td><td>60 min</td><td>Disponible</td></tr>
+<tr><td>En dos días</td><td>15:00</td><td>90 min</td><td>Disponible</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section id="metricas" class="section">
+<h2>Indicadores de éxito</h2>
+<div class="card">
+<table>
+<tr><th>Métrica</th><th>Meta propuesta</th><th>Propósito</th></tr>
+<tr><td>Tasa de recuperación</td><td>≥ 40%</td><td>Recuperar citas canceladas</td></tr>
+<tr><td>Conversión de ofertas</td><td>≥ 30%</td><td>Medir aceptación de horarios</td></tr>
+<tr><td>Conflictos de agenda</td><td>0</td><td>Evitar citas traslapadas</td></tr>
+<tr><td>Trazabilidad</td><td>100%</td><td>Registrar respuestas</td></tr>
+</table>
+</div>
+<div class="card"><h3>Responsabilidades</h3>
+<p><b>Dra. Angélica:</b> valida disponibilidad y autoriza la confirmación.</p>
+<p><b>Virginia:</b> registra pacientes, ofrece horarios y documenta respuestas.</p>
+</div>
+<p><small>Las metas son hipótesis iniciales, no resultados medidos. Esta demo usa datos ficticios y no está conectada a una agenda real.</small></p>
+</section>
+</main>
+</div>
+<script>
+function show(id,btn){
+ document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+}
+let pacientes=3,espacios=2;
+document.getElementById('formPaciente').addEventListener('submit',function(e){
+ e.preventDefault();
+ const n=document.getElementById('nombre').value;
+ const t=document.getElementById('tratamiento').value;
+ const row=document.createElement('tr');
+ row.innerHTML='<td></td><td></td><td>En espera</td>';
+ row.cells[0].textContent=n;row.cells[1].textContent=t;
+ document.getElementById('tablaPacientes').appendChild(row);
+ pacientes++;document.getElementById('totalP').textContent=pacientes;
+ this.reset();alert('Paciente agregado a la lista de espera.');
+});
+document.getElementById('formEspacio').addEventListener('submit',function(e){
+ e.preventDefault();
+ const row=document.createElement('tr');
+ [document.getElementById('fecha').value,document.getElementById('hora').value,document.getElementById('minutos').value+' min','Disponible'].forEach((v,i)=>row.insertCell(i).textContent=v);
+ document.getElementById('tablaEspacios').appendChild(row);
+ espacios++;document.getElementById('totalE').textContent=espacios;
+ this.reset();alert('Espacio registrado.');
+});
+</script>
+</body>
+</html>
