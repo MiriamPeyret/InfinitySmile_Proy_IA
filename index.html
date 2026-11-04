@@ -180,34 +180,6 @@ document.getElementById('formEspacio').addEventListener('submit',function(e){
 
 
 
-
-// Aquí pueden estar las funciones que ya tenías.
-
-// Función para abrir WhatsApp
-function enviarWhatsApp(nombre, telefono, fecha, hora) {
-  const numero = telefono.replace(/\D/g, "");
-
-  const numeroWhatsApp = numero.startsWith("52")
-    ? numero
-    : "52" + numero;
-
-  const mensaje =
-    `Hola ${nombre}, te contactamos de Infinite Smile, ` +
-    `consultorio de la Dra. Angélica.\n\n` +
-    `Tenemos un espacio disponible para tu cita dental:\n` +
-    `Fecha: ${fecha}\n` +
-    `Hora: ${hora}\n\n` +
-    `¿Te gustaría confirmar este horario?\n\n` +
-    `Atentamente, Virginia.`;
-
-  const url = "https://wa.me/" +
-    numeroWhatsApp +
-    "?text=" +
-    encodeURIComponent(mensaje);
-
-  window.open(url, "_blank");
-}
-
 </script>
 
 
