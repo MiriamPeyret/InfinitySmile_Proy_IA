@@ -1,13 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infinite Smile | Gestión Dental</title>
+<title>Infinite Smile | Smart Waitlist</title>
 <style>
 :root {
   --navy:#193b59;
-  --navy2:#203d59;
   --blue:#397b9e;
   --teal:#398c83;
   --bg:#f3f6f8;
@@ -16,7 +16,7 @@
 * {box-sizing:border-box}
 body {
   margin:0;
-  font-family:Arial,sans-serif;
+  font:14px Arial,sans-serif;
   background:var(--bg);
   color:#263b4b;
 }
@@ -27,6 +27,7 @@ header {
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:10px;
 }
 header h1 {margin:0;font-size:23px}
 header small {color:#cbdce8}
@@ -36,7 +37,7 @@ header small {color:#cbdce8}
   min-height:90vh;
 }
 aside {
-  background:var(--navy2);
+  background:#203d59;
   color:white;
   padding:22px 14px;
 }
@@ -50,12 +51,11 @@ nav button {
   background:transparent;
   color:white;
   cursor:pointer;
+  border-radius:5px;
 }
-nav button:hover,nav button.active {
-  background:#527d9c;
-}
+nav button:hover,nav button.active {background:#527d9c}
 main {padding:25px;min-width:0}
-h2 {color:var(--navy)}
+h2,h3 {color:var(--navy)}
 .kpis {
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -92,7 +92,7 @@ h2 {color:var(--navy)}
   margin-bottom:15px;
   min-width:0;
 }
-.card h3 {color:var(--navy)}
+.card h3 {margin-top:0}
 .table-scroll {overflow-x:auto}
 table {
   width:100%;
@@ -103,6 +103,7 @@ th,td {
   text-align:left;
   padding:12px 9px;
   border-bottom:1px solid #e7edf1;
+  vertical-align:middle;
 }
 th {color:#617889}
 input,select {
@@ -113,26 +114,38 @@ input,select {
   border-radius:5px;
 }
 label {font-size:12px}
-button.primary {
-  background:var(--teal);
-  color:white;
+button.primary,button.whatsapp,button.secondary {
   border:0;
-  padding:11px 15px;
-  border-radius:5px;
-  cursor:pointer;
-}
-button.whatsapp {
-  background:#228a5b;
   color:white;
-  border:0;
   padding:10px;
   border-radius:5px;
   cursor:pointer;
+  margin:2px;
+}
+button.primary {background:var(--teal)}
+button.whatsapp {
+  background:#228a5b;
   white-space:nowrap;
 }
-button.whatsapp:hover {background:#186f47}
+button.secondary {background:#4d718c}
+button:disabled {opacity:.45;cursor:not-allowed}
 .section {display:none}
 .section.active {display:block}
+.tag {
+  padding:4px 8px;
+  border-radius:12px;
+  background:#e6f2ee;
+  color:#28735e;
+  font-size:11px;
+}
+.notice {
+  background:#eef5f7;
+  padding:12px;
+  border-left:4px solid var(--teal);
+  font-size:12px;
+  margin:12px 0;
+}
+.muted {color:#637b8a;font-size:12px}
 .bar {
   height:12px;
   background:#e9eff3;
@@ -145,13 +158,6 @@ button.whatsapp:hover {background:#186f47}
   background:#5795b5;
   border-radius:8px;
 }
-.notice {
-  background:#eef5f7;
-  padding:12px;
-  border-left:4px solid var(--teal);
-  font-size:12px;
-  margin-top:12px;
-}
 @media(max-width:900px) {
   .grid {grid-template-columns:1fr}
   .kpis {grid-template-columns:repeat(2,1fr)}
@@ -160,11 +166,14 @@ button.whatsapp:hover {background:#186f47}
   .layout {grid-template-columns:1fr}
   main {padding:15px}
   header {flex-wrap:wrap}
+  aside {padding:10px}
+  nav {display:flex;overflow:auto}
+  nav button {min-width:125px}
 }
 </style>
 </head>
-
 <body>
+
 <header>
   <div>
     <h1>∞ Infinite Smile</h1>
@@ -175,199 +184,268 @@ button.whatsapp:hover {background:#186f47}
 
 <div class="layout">
 <aside>
-<h3>INFINITE SMILE</h3>
-<nav>
-<button class="active" data-page="inicio">▦ Resumen ejecutivo</button>
-<button data-page="pacientes">◷ Lista de espera</button>
-<button data-page="espacios">＋ Espacios disponibles</button>
-<button data-page="metricas">▤ Indicadores</button>
-</nav>
+  <h3>INFINITE SMILE</h3>
+  <nav>
+    <button class="active" data-page="inicio">
+      ▦ Resumen ejecutivo
+    </button>
+    <button data-page="pacientes">
+      ◷ Lista de espera
+    </button>
+    <button data-page="espacios">
+      ＋ Espacios disponibles
+    </button>
+    <button data-page="ofertas">
+      ✉ Seguimiento de ofertas
+    </button>
+    <button data-page="metricas">
+      ▤ Indicadores
+    </button>
+  </nav>
 </aside>
 
 <main>
 
 <section id="inicio" class="section active">
-<h2>Resumen ejecutivo</h2>
-<p>Control de pacientes y recuperación de citas.</p>
+  <h2>Resumen ejecutivo</h2>
+  <p>Control de pacientes, ofertas y recuperación de citas.</p>
 
-<div class="kpis">
-<div class="kpi">
-<span>Pacientes en espera</span>
-<strong id="totalP">0</strong>
-</div>
-<div class="kpi">
-<span>Espacios disponibles</span>
-<strong id="totalE">0</strong>
-</div>
-<div class="kpi">
-<span>Citas recuperadas</span>
-<strong id="totalR">0</strong>
-</div>
-<div class="kpi">
-<span>Tasa de recuperación</span>
-<strong id="tasa">0%</strong>
-</div>
-</div>
+  <div class="kpis">
+    <div class="kpi">
+      <span>Pacientes en espera</span>
+      <strong id="totalP">0</strong>
+    </div>
+    <div class="kpi">
+      <span>Espacios disponibles</span>
+      <strong id="totalE">0</strong>
+    </div>
+    <div class="kpi">
+      <span>Citas recuperadas</span>
+      <strong id="totalR">0</strong>
+    </div>
+    <div class="kpi">
+      <span>Tasa de recuperación</span>
+      <strong id="tasa">0%</strong>
+    </div>
+  </div>
 
-<div class="grid">
-<div class="card">
-<h3>Pacientes por tratamiento</h3>
-<div id="barras"></div>
-</div>
-<div class="card">
-<h3>Próximos espacios disponibles</h3>
-<div id="proximos"></div>
-</div>
-</div>
+  <div class="grid">
+    <div class="card">
+      <h3>Pacientes por tratamiento</h3>
+      <div id="barras"></div>
+    </div>
+    <div class="card">
+      <h3>Próximos espacios</h3>
+      <div id="proximos"></div>
+    </div>
+  </div>
 
-<div class="card">
-<h3>Objetivo de Infinite Smile</h3>
-<p>
-Reducir espacios perdidos por cancelaciones
-y mejorar la continuidad de tratamientos
-mediante una lista de espera inteligente.
-</p>
-</div>
+  <div class="card">
+    <h3>Objetivo</h3>
+    <p>
+      Reducir espacios perdidos por cancelaciones y
+      mejorar la continuidad de tratamientos con
+      Smart Waitlist.
+    </p>
+    <span class="tag">
+      Prototipo académico · Datos ficticios
+    </span>
+  </div>
 </section>
 
 <section id="pacientes" class="section">
-<h2>Lista de espera inteligente</h2>
+  <h2>Lista de espera inteligente</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Registrar paciente</h3>
+      <form id="formPaciente">
+        <label>Nombre completo *</label>
+        <input id="nombre" required>
 
-<div class="grid">
+        <label>Teléfono mexicano de 10 dígitos *</label>
+        <input id="telefono" required>
 
-<div class="card">
-<h3>Registrar paciente</h3>
-<form id="formPaciente">
+        <label>Tratamiento *</label>
+        <select id="tratamiento" required>
+          <option value="">Seleccionar</option>
+          <option>Limpieza</option>
+          <option>Ortodoncia</option>
+          <option>Endodoncia</option>
+          <option>Resina</option>
+          <option>Revisión</option>
+        </select>
 
-<label>Nombre completo *</label>
-<input id="nombre" required>
+        <label>Duración requerida *</label>
+        <select id="duracion" required>
+          <option value="">Seleccionar</option>
+          <option value="30">30 minutos</option>
+          <option value="45">45 minutos</option>
+          <option value="60">60 minutos</option>
+          <option value="90">90 minutos</option>
+        </select>
 
-<label>Teléfono mexicano de 10 dígitos *</label>
-<input id="telefono" required>
+        <label>Horario preferido *</label>
+        <select id="horario" required>
+          <option value="">Seleccionar</option>
+          <option>Mañana</option>
+          <option>Tarde</option>
+          <option>Cualquier horario</option>
+        </select>
 
-<label>Tratamiento *</label>
-<select id="tratamiento" required>
-<option value="">Seleccionar</option>
-<option>Limpieza</option>
-<option>Ortodoncia</option>
-<option>Endodoncia</option>
-<option>Resina</option>
-<option>Revisión</option>
-</select>
+        <button class="primary" type="submit">
+          Agregar a lista
+        </button>
+      </form>
+    </div>
 
-<label>Duración requerida *</label>
-<select id="duracion" required>
-<option value="">Seleccionar</option>
-<option value="30">30 minutos</option>
-<option value="45">45 minutos</option>
-<option value="60">60 minutos</option>
-<option value="90">90 minutos</option>
-</select>
-
-<label>Horario preferido *</label>
-<select id="horario" required>
-<option value="">Seleccionar</option>
-<option>Mañana</option>
-<option>Tarde</option>
-<option>Cualquier horario</option>
-</select>
-
-<button class="primary" type="submit">
-Agregar a lista
-</button>
-
-</form>
-</div>
-
-<div class="card">
-<h3>Pacientes registrados</h3>
-<p>Selecciona WhatsApp para ofrecer una cita.</p>
-
-<div class="table-scroll">
-<table>
-<thead>
-<tr>
-<th>Paciente</th>
-<th>Tratamiento</th>
-<th>Preferencia</th>
-<th>Estado</th>
-<th>WhatsApp</th>
-</tr>
-</thead>
-<tbody id="tablaPacientes"></tbody>
-</table>
-</div>
-</div>
-
-</div>
+    <div class="card">
+      <h3>Pacientes registrados</h3>
+      <p class="muted">
+        WhatsApp prepara el mensaje.
+        Virginia debe enviarlo manualmente.
+      </p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Paciente</th>
+              <th>Tratamiento</th>
+              <th>Preferencia</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="tablaPacientes"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="espacios" class="section">
-<h2>Espacios disponibles</h2>
+  <h2>Espacios disponibles</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Registrar espacio liberado</h3>
+      <form id="formEspacio">
+        <label>Fecha *</label>
+        <input id="fecha" type="date" required>
 
-<div class="grid">
-<div class="card">
-<h3>Registrar espacio liberado</h3>
+        <label>Hora *</label>
+        <input id="hora" type="time" required>
 
-<form id="formEspacio">
+        <label>Duración *</label>
+        <select id="minutos">
+          <option value="30">30 minutos</option>
+          <option value="45">45 minutos</option>
+          <option value="60">60 minutos</option>
+          <option value="90">90 minutos</option>
+        </select>
 
-<label>Fecha *</label>
-<input id="fecha" type="date" required>
+        <button class="primary" type="submit">
+          Registrar espacio
+        </button>
+      </form>
 
-<label>Hora *</label>
-<input id="hora" type="time" required>
+      <div class="notice">
+        Las citas confirmadas dentro de esta demo
+        se consideran ocupadas.
+        No hay conexión con Google Calendar.
+      </div>
+    </div>
 
-<label>Duración disponible *</label>
-<select id="minutos">
-<option value="30">30 minutos</option>
-<option value="45">45 minutos</option>
-<option value="60">60 minutos</option>
-<option value="90">90 minutos</option>
-</select>
+    <div class="card">
+      <h3>Agenda liberada</h3>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Duración</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tablaEspacios"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
-<button class="primary" type="submit">
-Registrar espacio
-</button>
-</form>
-
-<div class="notice">
-La Dra. Angélica debe validar la agenda
-antes de confirmar una cita real.
-</div>
-</div>
-
-<div class="card">
-<h3>Agenda liberada</h3>
-<div class="table-scroll">
-<table>
-<thead>
-<tr>
-<th>Fecha</th>
-<th>Hora</th>
-<th>Duración</th>
-<th>Estado</th>
-</tr>
-</thead>
-<tbody id="tablaEspacios"></tbody>
-</table>
-</div>
-</div>
-</div>
+<section id="ofertas" class="section">
+  <h2>Seguimiento de ofertas</h2>
+  <p>
+    Virginia registra la respuesta y la
+    Dra. Angélica autoriza la confirmación.
+  </p>
+  <div class="card">
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Paciente</th>
+            <th>Horario ofrecido</th>
+            <th>Estado</th>
+            <th>Fecha de registro</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaOfertas"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="notice">
+    Aceptar una oferta no confirma la cita.
+    Se requiere autorización de la Dra. Angélica
+    y validación de disponibilidad en esta demo.
+  </div>
 </section>
 
 <section id="metricas" class="section">
-<h2>Indicadores de éxito</h2>
-<div class="card">
-<table>
-<tr><th>Métrica</th><th>Meta</th></tr>
-<tr><td>Tasa de recuperación</td><td>≥ 40%</td></tr>
-<tr><td>Conversión de ofertas</td><td>≥ 30%</td></tr>
-<tr><td>Tiempo de reasignación</td><td>≤ 4 horas</td></tr>
-<tr><td>Conflictos de agenda</td><td>0</td></tr>
-<tr><td>Trazabilidad</td><td>100%</td></tr>
-</table>
-</div>
-<p>Las metas son propuestas académicas, no resultados reales.</p>
+  <h2>Indicadores de éxito</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Métrica</th>
+          <th>Meta</th>
+          <th>Resultado demo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tasa de recuperación</td>
+          <td>≥ 40%</td>
+          <td id="mRec">0%</td>
+        </tr>
+        <tr>
+          <td>Conversión de ofertas</td>
+          <td>≥ 30%</td>
+          <td id="mConv">0%</td>
+        </tr>
+        <tr>
+          <td>Tiempo de reasignación</td>
+          <td>≤ 4 horas</td>
+          <td>No medido</td>
+        </tr>
+        <tr>
+          <td>Conflictos confirmados dentro de la demo</td>
+          <td>0</td>
+          <td id="mConf">0</td>
+        </tr>
+        <tr>
+          <td>Ofertas con respuesta registrada</td>
+          <td>100%</td>
+          <td id="mTrace">0%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">
+    Las metas son propuestas académicas.
+    Los resultados son simulaciones locales.
+  </p>
 </section>
 
 </main>
@@ -377,258 +455,562 @@ antes de confirmar una cita real.
 "use strict";
 
 const $ = id => document.getElementById(id);
-const CLAVE = "infinite-smile-mvp-v3";
+const KEY = "infinite-smile-mvp-v4";
 
 function fechaFutura(dias) {
-  const d = new Date();
-  d.setDate(d.getDate() + dias);
-  return d.getFullYear() + "-" +
-    String(d.getMonth()+1).padStart(2,"0") + "-" +
-    String(d.getDate()).padStart(2,"0");
+  const x = new Date();
+  x.setDate(x.getDate() + dias);
+
+  return x.getFullYear() + "-" +
+    String(x.getMonth() + 1).padStart(2, "0") + "-" +
+    String(x.getDate()).padStart(2, "0");
 }
 
-function datosIniciales() {
+function inicial() {
   return {
     pacientes: [
-      {id:1,nombre:"Sofía Hernández",telefono:"",
-       tratamiento:"Limpieza",duracion:45,
-       horario:"Mañana",estado:"En espera"},
-      {id:2,nombre:"Carlos Méndez",telefono:"",
-       tratamiento:"Resina",duracion:60,
-       horario:"Tarde",estado:"En espera"},
-      {id:3,nombre:"Valeria Torres",telefono:"",
-       tratamiento:"Ortodoncia",duracion:30,
-       horario:"Cualquier horario",estado:"En espera"}
+      {
+        id:1,
+        nombre:"Sofía Hernández",
+        telefono:"",
+        tratamiento:"Limpieza",
+        duracion:45,
+        horario:"Mañana",
+        estado:"En espera"
+      },
+      {
+        id:2,
+        nombre:"Carlos Méndez",
+        telefono:"",
+        tratamiento:"Resina",
+        duracion:60,
+        horario:"Tarde",
+        estado:"En espera"
+      },
+      {
+        id:3,
+        nombre:"Valeria Torres",
+        telefono:"",
+        tratamiento:"Ortodoncia",
+        duracion:30,
+        horario:"Cualquier horario",
+        estado:"En espera"
+      }
     ],
     espacios: [
-      {id:11,fecha:fechaFutura(1),hora:"09:00",
-       duracion:60,estado:"Disponible"},
-      {id:12,fecha:fechaFutura(2),hora:"15:00",
-       duracion:90,estado:"Disponible"}
-    ]
+      {
+        id:11,
+        fecha:fechaFutura(1),
+        hora:"09:00",
+        duracion:60,
+        estado:"Disponible"
+      },
+      {
+        id:12,
+        fecha:fechaFutura(2),
+        hora:"15:00",
+        duracion:90,
+        estado:"Disponible"
+      }
+    ],
+    ofertas:[]
   };
 }
 
 let datos;
+
 try {
-  datos = JSON.parse(localStorage.getItem(CLAVE));
-  if (!datos || !Array.isArray(datos.pacientes) ||
-      !Array.isArray(datos.espacios)) {
-    datos = datosIniciales();
+  datos = JSON.parse(localStorage.getItem(KEY));
+
+  if (
+    !datos ||
+    !Array.isArray(datos.pacientes) ||
+    !Array.isArray(datos.espacios) ||
+    !Array.isArray(datos.ofertas)
+  ) {
+    datos = inicial();
   }
-} catch(e) {
-  datos = datosIniciales();
+} catch (e) {
+  datos = inicial();
 }
 
 function guardar() {
-  localStorage.setItem(CLAVE, JSON.stringify(datos));
+  localStorage.setItem(KEY, JSON.stringify(datos));
   renderizar();
 }
 
-function fechaVisible(fecha) {
+function visible(fecha) {
   const [a,m,d] = fecha.split("-");
-  return d+"/"+m+"/"+a;
+  return d + "/" + m + "/" + a;
 }
 
 function telefonoValido(valor) {
-  let n = String(valor||"").replace(/\D/g,"");
-  if(n.length===12 && n.startsWith("52")) {
-    n=n.slice(2);
+  let n = String(valor || "").replace(/\D/g, "");
+
+  if (n.length === 12 && n.startsWith("52")) {
+    n = n.slice(2);
   }
-  return n.length===10 ? n : null;
+
+  return n.length === 10 ? n : null;
 }
 
-function compatibles(p) {
-  return datos.espacios.filter(s => {
-    const periodo = Number(s.hora.slice(0,2)) < 12
-      ? "Mañana" : "Tarde";
+function inicioMin(s) {
+  return Number(s.hora.slice(0,2)) * 60 +
+    Number(s.hora.slice(3,5));
+}
 
-    return s.estado==="Disponible" &&
+function seTraslapan(a,b) {
+  return a.fecha === b.fecha &&
+    inicioMin(a) < inicioMin(b) + Number(b.duracion) &&
+    inicioMin(b) < inicioMin(a) + Number(a.duracion);
+}
+
+function candidatos(p) {
+  return datos.espacios.filter(s => {
+    const periodo =
+      Number(s.hora.slice(0,2)) < 12
+        ? "Mañana"
+        : "Tarde";
+
+    return p.estado === "En espera" &&
+      s.estado === "Disponible" &&
       s.duracion >= p.duracion &&
-      (p.horario==="Cualquier horario" ||
-       p.horario===periodo);
+      (
+        p.horario === "Cualquier horario" ||
+        p.horario === periodo
+      );
   });
 }
 
-function enviarWhatsApp(id) {
-  const p = datos.pacientes.find(x=>x.id===id);
-  if(!p) return;
+function registrarOferta(pid) {
+  const p = datos.pacientes.find(x => x.id === pid);
 
-  let telefono = telefonoValido(p.telefono);
+  if (!p || p.estado !== "En espera") return;
 
-  if(!telefono) {
+  let numero = telefonoValido(p.telefono);
+
+  if (!numero) {
     const nuevo = prompt(
-      "Ingresa un teléfono mexicano de 10 dígitos para "+p.nombre
+      "Teléfono mexicano de 10 dígitos para " + p.nombre
     );
-    if(nuevo===null) return;
 
-    telefono=telefonoValido(nuevo);
-    if(!telefono) {
-      alert("El teléfono debe tener 10 dígitos.");
+    if (nuevo === null) return;
+
+    numero = telefonoValido(nuevo);
+
+    if (!numero) {
+      alert("Teléfono inválido.");
       return;
     }
-    p.telefono=telefono;
-    guardar();
+
+    p.telefono = numero;
   }
 
-  const opciones = compatibles(p);
+  const opciones = candidatos(p);
 
-  if(!opciones.length) {
-    alert("No hay espacios compatibles. Registra uno primero.");
+  if (!opciones.length) {
+    alert(
+      "No hay espacios compatibles. " +
+      "Registra otro espacio disponible."
+    );
     return;
   }
 
-  const lista = opciones.map((s,i)=>
-    (i+1)+". "+fechaVisible(s.fecha)+
-    " a las "+s.hora+" ("+s.duracion+" min)"
+  const lista = opciones.map((s,i) =>
+    (i+1) + ". " + visible(s.fecha) +
+    " " + s.hora +
+    " (" + s.duracion + " min)"
   ).join("\n");
 
   const seleccion = prompt(
-    "Selecciona el número del espacio para "+p.nombre+
-    ":\n\n"+lista,"1"
+    "Selecciona el número del espacio:\n" + lista,
+    "1"
   );
 
-  if(seleccion===null) return;
+  if (seleccion === null) return;
 
-  const indice=Number(seleccion)-1;
+  const indice = Number(seleccion) - 1;
 
-  if(!Number.isInteger(indice) ||
-     indice<0 || indice>=opciones.length) {
-    alert("Selecciona una opción válida.");
+  if (
+    !Number.isInteger(indice) ||
+    indice < 0 ||
+    indice >= opciones.length
+  ) {
+    alert("Opción inválida.");
     return;
   }
 
-  const s=opciones[indice];
+  const s = opciones[indice];
 
   const mensaje =
-    "Hola "+p.nombre+", te contactamos de Infinite Smile, "+
-    "consultorio de la Dra. Angélica.\n\n"+
-    "Tenemos un espacio disponible para tu tratamiento de "+
-    p.tratamiento+".\n\n"+
-    "Fecha: "+fechaVisible(s.fecha)+"\n"+
-    "Hora: "+s.hora+"\n"+
-    "Duración estimada: "+p.duracion+" minutos.\n\n"+
-    "¿Te gustaría reservar este horario?\n"+
-    "La cita está sujeta a confirmación del consultorio.\n\n"+
+    "Hola " + p.nombre +
+    ", te contactamos de Infinite Smile, " +
+    "consultorio de la Dra. Angélica.\n\n" +
+    "Tenemos un espacio disponible para " +
+    p.tratamiento + ".\n" +
+    "Fecha: " + visible(s.fecha) + "\n" +
+    "Hora: " + s.hora + "\n" +
+    "Duración estimada: " + p.duracion +
+    " minutos.\n\n" +
+    "¿Te gustaría reservar este horario? " +
+    "La cita está sujeta a confirmación " +
+    "del consultorio.\n\n" +
     "Atentamente, Virginia.";
 
-  const url="https://wa.me/52"+telefono+
-    "?text="+encodeURIComponent(mensaje);
+  const url =
+    "https://wa.me/52" + numero +
+    "?text=" + encodeURIComponent(mensaje);
 
-  window.open(url,"_blank");
+  const nueva = {
+    id:Date.now(),
+    pacienteId:p.id,
+    espacioId:s.id,
+    estado:"Pendiente",
+    creada:new Date().toISOString(),
+    respondida:null,
+    confirmada:null
+  };
+
+  const ventana = window.open(
+    url, "_blank", "noopener,noreferrer"
+  );
+
+  datos.ofertas.push(nueva);
+  guardar();
+
+  if (!ventana) {
+    alert(
+      "La oferta quedó registrada. " +
+      "Si WhatsApp no se abrió, revisa las ventanas emergentes."
+    );
+  }
 }
 
-function celda(tr,texto) {
-  const td=document.createElement("td");
-  td.textContent=texto;
-  tr.appendChild(td);
-  return td;
+function responder(id, estado) {
+  const o = datos.ofertas.find(x => x.id === id);
+
+  if (!o || o.estado !== "Pendiente") return;
+
+  if (!confirm("Registrar respuesta: " + estado + "?")) {
+    return;
+  }
+
+  o.estado = estado;
+  o.respondida = new Date().toISOString();
+
+  guardar();
+}
+
+function confirmar(id) {
+  const o = datos.ofertas.find(x => x.id === id);
+
+  if (!o || o.estado !== "Aceptada") return;
+
+  const s = datos.espacios.find(
+    x => x.id === o.espacioId
+  );
+
+  const p = datos.pacientes.find(
+    x => x.id === o.pacienteId
+  );
+
+  if (
+    !s || !p ||
+    s.estado !== "Disponible" ||
+    p.estado !== "En espera"
+  ) {
+    alert(
+      "No se puede confirmar: el paciente " +
+      "o el espacio ya no están disponibles."
+    );
+    return;
+  }
+
+  if (!candidatos(p).some(x => x.id === s.id)) {
+    alert("El horario ya no es compatible.");
+    return;
+  }
+
+  if (datos.espacios.some(x =>
+    x.id !== s.id &&
+    x.estado === "Confirmada" &&
+    seTraslapan(x,s)
+  )) {
+    alert(
+      "Conflicto: ya existe una cita confirmada " +
+      "que se traslapa."
+    );
+    return;
+  }
+
+  if (!confirm(
+    "¿La Dra. Angélica validó la agenda y " +
+    "autoriza confirmar la cita de " +
+    p.nombre + "?"
+  )) {
+    return;
+  }
+
+  s.estado = "Confirmada";
+  p.estado = "Confirmado";
+  o.estado = "Confirmada";
+  o.confirmada = new Date().toISOString();
+
+  datos.ofertas
+    .filter(x =>
+      x.id !== o.id &&
+      x.estado === "Pendiente" &&
+      (
+        x.pacienteId === p.id ||
+        x.espacioId === s.id
+      )
+    )
+    .forEach(x => {
+      x.estado = "Expirada";
+      x.respondida = new Date().toISOString();
+    });
+
+  guardar();
+  alert("Cita confirmada dentro del prototipo.");
+}
+
+function td(tr, texto) {
+  const celda = document.createElement("td");
+  celda.textContent = texto;
+  tr.appendChild(celda);
+  return celda;
+}
+
+function btn(celda, texto, clase, funcion) {
+  const boton = document.createElement("button");
+  boton.type = "button";
+  boton.className = clase;
+  boton.textContent = texto;
+  boton.addEventListener("click", funcion);
+  celda.appendChild(boton);
 }
 
 function renderizar() {
-  const activos=datos.pacientes.filter(
-    p=>p.estado==="En espera"
-  );
-  const libres=datos.espacios.filter(
-    s=>s.estado==="Disponible"
+  const activos = datos.pacientes.filter(
+    p => p.estado === "En espera"
   );
 
-  $("totalP").textContent=activos.length;
-  $("totalE").textContent=libres.length;
-  $("totalR").textContent="0";
-  $("tasa").textContent="0%";
+  const libres = datos.espacios.filter(
+    s => s.estado === "Disponible"
+  );
 
-  const tabla=$("tablaPacientes");
-  tabla.replaceChildren();
+  const recuperadas = datos.espacios.filter(
+    s => s.estado === "Confirmada"
+  ).length;
 
-  datos.pacientes.forEach(p=>{
-    const tr=document.createElement("tr");
+  const ofertas = datos.ofertas;
 
-    celda(tr,p.nombre);
-    celda(tr,p.tratamiento+" · "+p.duracion+" min");
-    celda(tr,p.horario);
-    celda(tr,p.estado);
+  const aceptadas = ofertas.filter(o =>
+    o.estado === "Aceptada" ||
+    o.estado === "Confirmada"
+  ).length;
 
-    const td=document.createElement("td");
-    const boton=document.createElement("button");
+  const resueltas = ofertas.filter(
+    o => o.estado !== "Pendiente"
+  ).length;
 
-    boton.className="whatsapp";
-    boton.type="button";
-    boton.textContent="Enviar WhatsApp";
-    boton.addEventListener("click",()=>enviarWhatsApp(p.id));
+  $("totalP").textContent = activos.length;
+  $("totalE").textContent = libres.length;
+  $("totalR").textContent = recuperadas;
 
-    td.appendChild(boton);
-    tr.appendChild(td);
-    tabla.appendChild(tr);
+  $("tasa").textContent = datos.espacios.length
+    ? Math.round(
+        recuperadas / datos.espacios.length * 100
+      ) + "%"
+    : "0%";
+
+  $("mRec").textContent = $("tasa").textContent;
+
+  $("mConv").textContent = ofertas.length
+    ? Math.round(
+        aceptadas / ofertas.length * 100
+      ) + "%"
+    : "0%";
+
+  $("mTrace").textContent = ofertas.length
+    ? Math.round(
+        resueltas / ofertas.length * 100
+      ) + "%"
+    : "Sin ofertas";
+
+  $("mConf").textContent = "0 (control interno)";
+
+  const tablaP = $("tablaPacientes");
+  tablaP.replaceChildren();
+
+  datos.pacientes.forEach(p => {
+    const tr = document.createElement("tr");
+
+    td(tr,p.nombre);
+    td(tr,p.tratamiento + " · " + p.duracion + " min");
+    td(tr,p.horario);
+    td(tr,p.estado);
+
+    const acciones = td(tr,"");
+
+    if (p.estado === "En espera") {
+      btn(
+        acciones,
+        "Enviar WhatsApp",
+        "whatsapp",
+        () => registrarOferta(p.id)
+      );
+    }
+
+    tablaP.appendChild(tr);
   });
 
-  const tablaEspacios=$("tablaEspacios");
-  tablaEspacios.replaceChildren();
+  const tablaE = $("tablaEspacios");
+  tablaE.replaceChildren();
 
-  datos.espacios.forEach(s=>{
-    const tr=document.createElement("tr");
-    celda(tr,fechaVisible(s.fecha));
-    celda(tr,s.hora);
-    celda(tr,s.duracion+" min");
-    celda(tr,s.estado);
-    tablaEspacios.appendChild(tr);
+  datos.espacios.forEach(s => {
+    const tr = document.createElement("tr");
+
+    td(tr,visible(s.fecha));
+    td(tr,s.hora);
+    td(tr,s.duracion + " min");
+    td(tr,s.estado);
+
+    tablaE.appendChild(tr);
   });
 
-  const barras=$("barras");
+  const tablaO = $("tablaOfertas");
+  tablaO.replaceChildren();
+
+  ofertas.forEach(o => {
+    const p = datos.pacientes.find(
+      x => x.id === o.pacienteId
+    );
+
+    const s = datos.espacios.find(
+      x => x.id === o.espacioId
+    );
+
+    const tr = document.createElement("tr");
+
+    td(tr,p ? p.nombre : "Desconocido");
+
+    td(
+      tr,
+      s ? visible(s.fecha) + " " + s.hora
+        : "No disponible"
+    );
+
+    td(tr,o.estado);
+
+    td(
+      tr,
+      new Date(o.creada).toLocaleString("es-MX")
+    );
+
+    const acciones = td(tr,"");
+
+    if (o.estado === "Pendiente") {
+      btn(
+        acciones,
+        "Aceptada",
+        "primary",
+        () => responder(o.id,"Aceptada")
+      );
+
+      btn(
+        acciones,
+        "Rechazada",
+        "secondary",
+        () => responder(o.id,"Rechazada")
+      );
+
+      btn(
+        acciones,
+        "Sin respuesta",
+        "secondary",
+        () => responder(o.id,"Sin respuesta")
+      );
+    } else if (o.estado === "Aceptada") {
+      btn(
+        acciones,
+        "Confirmar cita",
+        "primary",
+        () => confirmar(o.id)
+      );
+    }
+
+    tablaO.appendChild(tr);
+  });
+
+  const barras = $("barras");
   barras.replaceChildren();
 
-  const tipos=[...new Set(activos.map(p=>p.tratamiento))];
+  const tipos = [
+    ...new Set(activos.map(p => p.tratamiento))
+  ];
 
-  tipos.forEach(tipo=>{
-    const cantidad=activos.filter(
-      p=>p.tratamiento===tipo
+  tipos.forEach(tipo => {
+    const cantidad = activos.filter(
+      p => p.tratamiento === tipo
     ).length;
 
-    const titulo=document.createElement("div");
-    titulo.textContent=tipo+" ("+cantidad+")";
+    const etiqueta = document.createElement("div");
+    etiqueta.textContent =
+      tipo + " (" + cantidad + ")";
 
-    const fondo=document.createElement("div");
-    fondo.className="bar";
+    const fondo = document.createElement("div");
+    fondo.className = "bar";
 
-    const relleno=document.createElement("i");
-    relleno.style.width=
-      Math.round(cantidad/activos.length*100)+"%";
+    const relleno = document.createElement("i");
+
+    relleno.style.width =
+      Math.round(
+        cantidad / activos.length * 100
+      ) + "%";
 
     fondo.appendChild(relleno);
-    barras.append(titulo,fondo);
+    barras.append(etiqueta,fondo);
   });
 
-  const proximos=$("proximos");
+  const proximos = $("proximos");
   proximos.replaceChildren();
 
-  libres.forEach(s=>{
-    const p=document.createElement("p");
-    p.textContent=fechaVisible(s.fecha)+
-      " · "+s.hora+" · "+s.duracion+" min";
+  libres.forEach(s => {
+    const p = document.createElement("p");
+
+    p.textContent =
+      visible(s.fecha) + " · " +
+      s.hora + " · " +
+      s.duracion + " min";
+
     proximos.appendChild(p);
   });
 }
 
-document.querySelectorAll("[data-page]").forEach(btn=>{
-  btn.addEventListener("click",()=>{
+document.querySelectorAll("[data-page]").forEach(b => {
+  b.addEventListener("click", () => {
     document.querySelectorAll(".section").forEach(
-      s=>s.classList.remove("active")
+      s => s.classList.remove("active")
     );
-    $(btn.dataset.page).classList.add("active");
+
+    $(b.dataset.page).classList.add("active");
 
     document.querySelectorAll("nav button").forEach(
-      b=>b.classList.toggle("active",b===btn)
+      x => x.classList.toggle("active",x === b)
     );
   });
 });
 
-$("formPaciente").addEventListener("submit",e=>{
+$("formPaciente").addEventListener("submit",e => {
   e.preventDefault();
 
-  const telefono=telefonoValido($("telefono").value);
+  const telefono = telefonoValido(
+    $("telefono").value
+  );
 
-  if(!telefono) {
-    alert("Ingresa un teléfono mexicano de 10 dígitos.");
+  if (!telefono) {
+    alert("Ingresa 10 dígitos mexicanos.");
     return;
   }
 
@@ -644,23 +1026,44 @@ $("formPaciente").addEventListener("submit",e=>{
 
   guardar();
   e.target.reset();
-  alert("Paciente registrado correctamente.");
+  alert("Paciente registrado.");
 });
 
-$("formEspacio").addEventListener("submit",e=>{
+$("formEspacio").addEventListener("submit",e => {
   e.preventDefault();
 
-  datos.espacios.push({
+  const s = {
     id:Date.now(),
     fecha:$("fecha").value,
     hora:$("hora").value,
     duracion:Number($("minutos").value),
     estado:"Disponible"
-  });
+  };
 
+  if (datos.espacios.some(x =>
+    x.fecha === s.fecha &&
+    x.hora === s.hora &&
+    x.duracion === s.duracion
+  )) {
+    alert("Ya existe un espacio idéntico.");
+    return;
+  }
+
+  if (datos.espacios.some(x =>
+    x.estado === "Confirmada" &&
+    seTraslapan(x,s)
+  )) {
+    alert(
+      "Ese horario se traslapa con una " +
+      "cita confirmada en la demo."
+    );
+    return;
+  }
+
+  datos.espacios.push(s);
   guardar();
   e.target.reset();
-  alert("Espacio registrado correctamente.");
+  alert("Espacio registrado.");
 });
 
 renderizar();
