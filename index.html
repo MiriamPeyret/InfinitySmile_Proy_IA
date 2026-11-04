@@ -177,8 +177,12 @@ document.getElementById('formEspacio').addEventListener('submit',function(e){
  this.reset();alert('Espacio registrado.');
 });
 
-</JavaScript>
 
+
+
+// Aquí pueden estar las funciones que ya tenías.
+
+// Función para abrir WhatsApp
 function enviarWhatsApp(nombre, telefono, fecha, hora) {
   const numero = telefono.replace(/\D/g, "");
 
@@ -195,14 +199,15 @@ function enviarWhatsApp(nombre, telefono, fecha, hora) {
     `¿Te gustaría confirmar este horario?\n\n` +
     `Atentamente, Virginia.`;
 
-  const url =
-    "https://wa.me/" +
+  const url = "https://wa.me/" +
     numeroWhatsApp +
     "?text=" +
     encodeURIComponent(mensaje);
 
-  window.open(url, "_blank", "noopener,noreferrer");
+  window.open(url, "_blank");
 }
+
+</script>
 
   
 </script>
