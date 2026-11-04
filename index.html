@@ -3,104 +3,666 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infinite Smile | Gestión inteligente dental</title>
+<title>Infinite Smile | Gestión Dental</title>
 <style>
-:root{--navy:#193b59;--navy2:#203d59;--blue:#397b9e;--teal:#398c83;--light:#dce9f1;--bg:#f3f6f8;--line:#dfe6eb;--ink:#263b4b;--muted:#617889}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}header{background:var(--navy);color:white;padding:19px 27px;display:flex;align-items:center;justify-content:space-between;gap:15px}header h1{margin:0;font-size:23px}header small{color:#cbdce8}.header-right{text-align:right;font-size:12px;line-height:1.7}.layout{display:grid;grid-template-columns:205px minmax(0,1fr);min-height:calc(100vh - 78px)}aside{background:var(--navy2);padding:22px 14px;color:white}aside h3{font-size:15px;margin:5px 8px 25px}nav button{display:block;width:100%;padding:14px;text-align:left;border:0;background:transparent;color:white;cursor:pointer;border-radius:5px;margin-bottom:5px;font-size:13px}nav button:hover,nav button.active{background:#527d9c}main{padding:25px;min-width:0}h2{color:var(--navy);margin-top:0;font-size:27px}.sub{color:var(--muted);font-size:13px;margin-top:-8px;margin-bottom:20px}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}.kpi{padding:18px;border-radius:7px;color:white;background:var(--navy)}.kpi:nth-child(2){background:#285878}.kpi:nth-child(3){background:var(--blue)}.kpi:nth-child(4){background:var(--light);color:var(--navy)}.kpi span{font-size:12px}.kpi strong{display:block;font-size:27px;margin-top:10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.card{background:white;border:1px solid var(--line);border-radius:7px;padding:20px;margin-bottom:15px;min-width:0}.card h3{font-size:16px;color:var(--navy);margin-top:0}.card.wide{grid-column:1/-1}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:12px 9px;border-bottom:1px solid #e7edf1;vertical-align:middle}th{color:var(--muted);font-weight:700}td{overflow-wrap:anywhere}button{font-family:inherit}button.primary{background:var(--teal);color:white;border:0;padding:11px 15px;border-radius:5px;cursor:pointer}button.primary:hover{background:#28776f}button.whatsapp{background:#228a5b;color:white;border:0;padding:9px 11px;border-radius:5px;cursor:pointer;white-space:nowrap;font-size:12px}button.whatsapp:hover{background:#186f47}button.secondary{background:#e7eef2;color:var(--navy);border:0;padding:9px 11px;border-radius:5px;cursor:pointer}button.danger{background:#f8eeee;color:#8e4141;border:0;padding:8px 10px;border-radius:5px;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}input,select{padding:10px;border:1px solid #ccd8df;border-radius:5px;width:100%;margin:5px 0 12px;font-size:13px;background:white}label{font-size:12px;color:#536b7c;display:block}.section{display:none}.section.active{display:block}.tag{display:inline-block;background:#e6f2ee;color:#28735e;padding:5px 9px;border-radius:15px;font-size:11px}.tag.gray{background:#edf1f4;color:#6b7c88}.tag.blue{background:#e7f0f7;color:#2e678c}.bar{height:12px;background:#e9eff3;border-radius:8px;margin:9px 0 15px}.bar i{display:block;height:12px;background:#5795b5;border-radius:8px}.help{font-size:12px;color:var(--muted);line-height:1.6}.notice{background:#eef5f7;border-left:4px solid var(--teal);padding:12px;font-size:12px;border-radius:4px;margin:15px 0}.row-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.empty{padding:18px;color:var(--muted);text-align:center}.slot-item{padding:12px;border:1px solid var(--line);border-radius:6px;margin-bottom:9px}.slot-item strong{color:var(--navy)}.slot-item p{margin:5px 0 0;font-size:12px;color:var(--muted)}.footer{text-align:center;color:#8797a4;font-size:11px;padding:20px 0}.status{font-size:12px;min-height:18px;margin:8px 0}.status.error{color:#9d3434}.status.ok{color:#1d7956}
-@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.card.wide{grid-column:auto}}@media(max-width:700px){.layout{grid-template-columns:1fr}aside{padding:10px}aside h3{margin:4px 7px 10px}nav{display:flex;overflow:auto}nav button{width:auto;white-space:nowrap;padding:11px}main{padding:15px}.header-right{font-size:10px}header{padding:15px}header h1{font-size:19px}.kpi strong{font-size:23px}}
+:root {
+  --navy:#193b59;
+  --navy2:#203d59;
+  --blue:#397b9e;
+  --teal:#398c83;
+  --bg:#f3f6f8;
+  --line:#dfe6eb;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:#263b4b;
+}
+header {
+  background:var(--navy);
+  color:white;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header h1 {margin:0;font-size:23px}
+header small {color:#cbdce8}
+.layout {
+  display:grid;
+  grid-template-columns:205px minmax(0,1fr);
+  min-height:90vh;
+}
+aside {
+  background:var(--navy2);
+  color:white;
+  padding:22px 14px;
+}
+aside h3 {font-size:15px}
+nav button {
+  display:block;
+  width:100%;
+  padding:14px;
+  text-align:left;
+  border:0;
+  background:transparent;
+  color:white;
+  cursor:pointer;
+}
+nav button:hover,nav button.active {
+  background:#527d9c;
+}
+main {padding:25px;min-width:0}
+h2 {color:var(--navy)}
+.kpis {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:20px 0;
+}
+.kpi {
+  background:var(--navy);
+  color:white;
+  padding:18px;
+  border-radius:7px;
+}
+.kpi:nth-child(2) {background:#285878}
+.kpi:nth-child(3) {background:var(--blue)}
+.kpi:nth-child(4) {
+  background:#dce9f1;
+  color:var(--navy);
+}
+.kpi strong {
+  display:block;
+  font-size:27px;
+  margin-top:10px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+.card {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:20px;
+  margin-bottom:15px;
+  min-width:0;
+}
+.card h3 {color:var(--navy)}
+.table-scroll {overflow-x:auto}
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+}
+th,td {
+  text-align:left;
+  padding:12px 9px;
+  border-bottom:1px solid #e7edf1;
+}
+th {color:#617889}
+input,select {
+  width:100%;
+  padding:10px;
+  margin:6px 0 12px;
+  border:1px solid #ccd8df;
+  border-radius:5px;
+}
+label {font-size:12px}
+button.primary {
+  background:var(--teal);
+  color:white;
+  border:0;
+  padding:11px 15px;
+  border-radius:5px;
+  cursor:pointer;
+}
+button.whatsapp {
+  background:#228a5b;
+  color:white;
+  border:0;
+  padding:10px;
+  border-radius:5px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+button.whatsapp:hover {background:#186f47}
+.section {display:none}
+.section.active {display:block}
+.bar {
+  height:12px;
+  background:#e9eff3;
+  border-radius:8px;
+  margin:10px 0;
+}
+.bar i {
+  display:block;
+  height:12px;
+  background:#5795b5;
+  border-radius:8px;
+}
+.notice {
+  background:#eef5f7;
+  padding:12px;
+  border-left:4px solid var(--teal);
+  font-size:12px;
+  margin-top:12px;
+}
+@media(max-width:900px) {
+  .grid {grid-template-columns:1fr}
+  .kpis {grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px) {
+  .layout {grid-template-columns:1fr}
+  main {padding:15px}
+  header {flex-wrap:wrap}
+}
 </style>
 </head>
+
 <body>
-<header><div><h1>∞ Infinite Smile</h1><small>Gestión inteligente de agenda dental</small></div><div class="header-right">Dra. Angélica · Dirección clínica<br>Virginia · Asistente</div></header>
+<header>
+  <div>
+    <h1>∞ Infinite Smile</h1>
+    <small>Gestión inteligente de agenda dental</small>
+  </div>
+  <div>Dra. Angélica | Virginia</div>
+</header>
+
 <div class="layout">
-<aside><h3>INFINITE SMILE</h3><nav>
-<button class="active" data-section="inicio">▦ Resumen ejecutivo</button>
-<button data-section="pacientes">◷ Lista de espera</button>
-<button data-section="espacios">＋ Espacios disponibles</button>
-<button data-section="metricas">▤ Indicadores</button>
-</nav></aside>
+<aside>
+<h3>INFINITE SMILE</h3>
+<nav>
+<button class="active" data-page="inicio">▦ Resumen ejecutivo</button>
+<button data-page="pacientes">◷ Lista de espera</button>
+<button data-page="espacios">＋ Espacios disponibles</button>
+<button data-page="metricas">▤ Indicadores</button>
+</nav>
+</aside>
+
 <main>
-<section id="inicio" class="section active"><h2>Resumen ejecutivo</h2><p class="sub">Control de pacientes, disponibilidad y recuperación de citas.</p>
-<div class="kpis"><div class="kpi"><span>Pacientes en espera</span><strong id="totalP">0</strong></div><div class="kpi"><span>Espacios disponibles</span><strong id="totalE">0</strong></div><div class="kpi"><span>Citas recuperadas</span><strong id="totalR">0</strong></div><div class="kpi"><span>Tasa de recuperación</span><strong id="tasa">0%</strong></div></div>
-<div class="grid"><div class="card"><h3>Actividad de pacientes</h3><p class="help">Pacientes activos por tratamiento</p><div id="barras"></div></div><div class="card"><h3>Próximos espacios disponibles</h3><div id="proximos"></div></div></div>
-<div class="card"><h3>Objetivo del consultorio</h3><p>Reducir espacios perdidos por cancelaciones y mejorar la continuidad de los tratamientos dentales mediante una lista de espera inteligente.</p><span class="tag">Prototipo académico · Datos ficticios</span></div></section>
-<section id="pacientes" class="section"><h2>Lista de espera inteligente</h2><p class="sub">Registra pacientes y ofrece un espacio disponible por WhatsApp.</p><div class="grid">
-<div class="card"><h3>Registrar paciente</h3><form id="formPaciente">
-<label for="nombre">Nombre completo *</label><input id="nombre" required maxlength="100" placeholder="Ej. Sofía Hernández">
-<label for="telefono">Teléfono mexicano de 10 dígitos *</label><input id="telefono" required inputmode="tel" placeholder="Ej. 9981234567">
-<label for="tratamiento">Tratamiento *</label><select id="tratamiento" required><option value="">Seleccionar</option><option>Limpieza</option><option>Ortodoncia</option><option>Endodoncia</option><option>Resina</option><option>Revisión</option></select>
-<label for="duracion">Duración requerida *</label><select id="duracion" required><option value="">Seleccionar</option><option value="30">30 minutos</option><option value="45">45 minutos</option><option value="60">60 minutos</option><option value="90">90 minutos</option></select>
-<label for="horario">Horario preferido *</label><select id="horario" required><option value="">Seleccionar</option><option>Mañana</option><option>Tarde</option><option>Cualquier horario</option></select>
-<button class="primary" type="submit">Agregar a lista</button><p id="estadoPaciente" class="status" role="status"></p></form></div>
-<div class="card"><h3>Pacientes registrados</h3><p class="help">El botón verde abre WhatsApp con una propuesta de cita. Selecciona primero un espacio compatible.</p><div class="table-scroll"><table><thead><tr><th>Paciente</th><th>Tratamiento</th><th>Preferencia</th><th>Estado</th><th>WhatsApp</th></tr></thead><tbody id="tablaPacientes"></tbody></table></div></div>
-</div></section>
-<section id="espacios" class="section"><h2>Espacios disponibles</h2><p class="sub">Registra cancelaciones y selecciona horarios para ofrecer a los pacientes.</p><div class="grid">
-<div class="card"><h3>Registrar espacio liberado</h3><form id="formEspacio">
-<label for="fecha">Fecha *</label><input id="fecha" type="date" required>
-<label for="hora">Hora *</label><input id="hora" type="time" required>
-<label for="minutos">Duración disponible *</label><select id="minutos" required><option value="30">30 minutos</option><option value="45">45 minutos</option><option value="60">60 minutos</option><option value="90">90 minutos</option></select>
-<button class="primary" type="submit">Registrar espacio</button><p id="estadoEspacio" class="status" role="status"></p></form><div class="notice">Esta demo no se sincroniza con Google Calendar. Antes de confirmar una cita real, la Dra. Angélica debe validar la agenda.</div></div>
-<div class="card"><h3>Agenda liberada</h3><div class="table-scroll"><table><thead><tr><th>Fecha</th><th>Hora</th><th>Duración</th><th>Estado</th></tr></thead><tbody id="tablaEspacios"></tbody></table></div></div></div></section>
-<section id="metricas" class="section"><h2>Indicadores de éxito</h2><div class="card"><div class="table-scroll"><table><thead><tr><th>Métrica</th><th>Meta propuesta</th><th>Estado de la demo</th></tr></thead><tbody>
-<tr><td>Tasa de recuperación</td><td>≥ 40%</td><td id="metRecuperacion">0%</td></tr>
-<tr><td>Conversión de ofertas</td><td>≥ 30%</td><td>No medido (envío manual)</td></tr>
-<tr><td>Tiempo de reasignación</td><td>≤ 4 horas</td><td>No medido</td></tr>
-<tr><td>Conflictos de agenda</td><td>0</td><td>No verificable sin agenda real</td></tr>
-<tr><td>Trazabilidad</td><td>100%</td><td>Parcial: solo registros locales</td></tr>
-</tbody></table></div></div><div class="card"><h3>Responsabilidades</h3><p><b>Dra. Angélica:</b> valida disponibilidad y autoriza la confirmación de una cita.</p><p><b>Virginia:</b> registra pacientes, selecciona espacios y prepara mensajes de WhatsApp.</p></div><p class="help">Las metas son hipótesis iniciales. Esta versión no realiza envíos automáticos ni confirma citas reales.</p></section>
-<div class="footer">Infinite Smile · Proyecto académico · No introducir datos reales de pacientes</div>
-</main></div>
+
+<section id="inicio" class="section active">
+<h2>Resumen ejecutivo</h2>
+<p>Control de pacientes y recuperación de citas.</p>
+
+<div class="kpis">
+<div class="kpi">
+<span>Pacientes en espera</span>
+<strong id="totalP">0</strong>
+</div>
+<div class="kpi">
+<span>Espacios disponibles</span>
+<strong id="totalE">0</strong>
+</div>
+<div class="kpi">
+<span>Citas recuperadas</span>
+<strong id="totalR">0</strong>
+</div>
+<div class="kpi">
+<span>Tasa de recuperación</span>
+<strong id="tasa">0%</strong>
+</div>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Pacientes por tratamiento</h3>
+<div id="barras"></div>
+</div>
+<div class="card">
+<h3>Próximos espacios disponibles</h3>
+<div id="proximos"></div>
+</div>
+</div>
+
+<div class="card">
+<h3>Objetivo de Infinite Smile</h3>
+<p>
+Reducir espacios perdidos por cancelaciones
+y mejorar la continuidad de tratamientos
+mediante una lista de espera inteligente.
+</p>
+</div>
+</section>
+
+<section id="pacientes" class="section">
+<h2>Lista de espera inteligente</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Registrar paciente</h3>
+<form id="formPaciente">
+
+<label>Nombre completo *</label>
+<input id="nombre" required>
+
+<label>Teléfono mexicano de 10 dígitos *</label>
+<input id="telefono" required>
+
+<label>Tratamiento *</label>
+<select id="tratamiento" required>
+<option value="">Seleccionar</option>
+<option>Limpieza</option>
+<option>Ortodoncia</option>
+<option>Endodoncia</option>
+<option>Resina</option>
+<option>Revisión</option>
+</select>
+
+<label>Duración requerida *</label>
+<select id="duracion" required>
+<option value="">Seleccionar</option>
+<option value="30">30 minutos</option>
+<option value="45">45 minutos</option>
+<option value="60">60 minutos</option>
+<option value="90">90 minutos</option>
+</select>
+
+<label>Horario preferido *</label>
+<select id="horario" required>
+<option value="">Seleccionar</option>
+<option>Mañana</option>
+<option>Tarde</option>
+<option>Cualquier horario</option>
+</select>
+
+<button class="primary" type="submit">
+Agregar a lista
+</button>
+
+</form>
+</div>
+
+<div class="card">
+<h3>Pacientes registrados</h3>
+<p>Selecciona WhatsApp para ofrecer una cita.</p>
+
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Paciente</th>
+<th>Tratamiento</th>
+<th>Preferencia</th>
+<th>Estado</th>
+<th>WhatsApp</th>
+</tr>
+</thead>
+<tbody id="tablaPacientes"></tbody>
+</table>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="espacios" class="section">
+<h2>Espacios disponibles</h2>
+
+<div class="grid">
+<div class="card">
+<h3>Registrar espacio liberado</h3>
+
+<form id="formEspacio">
+
+<label>Fecha *</label>
+<input id="fecha" type="date" required>
+
+<label>Hora *</label>
+<input id="hora" type="time" required>
+
+<label>Duración disponible *</label>
+<select id="minutos">
+<option value="30">30 minutos</option>
+<option value="45">45 minutos</option>
+<option value="60">60 minutos</option>
+<option value="90">90 minutos</option>
+</select>
+
+<button class="primary" type="submit">
+Registrar espacio
+</button>
+</form>
+
+<div class="notice">
+La Dra. Angélica debe validar la agenda
+antes de confirmar una cita real.
+</div>
+</div>
+
+<div class="card">
+<h3>Agenda liberada</h3>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Hora</th>
+<th>Duración</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody id="tablaEspacios"></tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+
+<section id="metricas" class="section">
+<h2>Indicadores de éxito</h2>
+<div class="card">
+<table>
+<tr><th>Métrica</th><th>Meta</th></tr>
+<tr><td>Tasa de recuperación</td><td>≥ 40%</td></tr>
+<tr><td>Conversión de ofertas</td><td>≥ 30%</td></tr>
+<tr><td>Tiempo de reasignación</td><td>≤ 4 horas</td></tr>
+<tr><td>Conflictos de agenda</td><td>0</td></tr>
+<tr><td>Trazabilidad</td><td>100%</td></tr>
+</table>
+</div>
+<p>Las metas son propuestas académicas, no resultados reales.</p>
+</section>
+
+</main>
+</div>
+
 <script>
-'use strict';
+"use strict";
+
 const $ = id => document.getElementById(id);
-const STORAGE_KEY = 'infinite-smile-demo-v2';
-function fechaFutura(dias){const d=new Date();d.setDate(d.getDate()+dias);const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),dia=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${dia}`;}
-function datosIniciales(){return {pacientes:[
-{id:1,nombre:'Sofía Hernández',telefono:'',tratamiento:'Limpieza',duracion:45,horario:'Mañana',estado:'En espera'},
-{id:2,nombre:'Carlos Méndez',telefono:'',tratamiento:'Resina',duracion:60,horario:'Tarde',estado:'En espera'},
-{id:3,nombre:'Valeria Torres',telefono:'',tratamiento:'Ortodoncia',duracion:30,horario:'Cualquier horario',estado:'En espera'}
-],espacios:[{id:11,fecha:fechaFutura(1),hora:'09:00',duracion:60,estado:'Disponible',pacienteId:null},{id:12,fecha:fechaFutura(2),hora:'15:00',duracion:90,estado:'Disponible',pacienteId:null}]};}
+const CLAVE = "infinite-smile-mvp-v3";
+
+function fechaFutura(dias) {
+  const d = new Date();
+  d.setDate(d.getDate() + dias);
+  return d.getFullYear() + "-" +
+    String(d.getMonth()+1).padStart(2,"0") + "-" +
+    String(d.getDate()).padStart(2,"0");
+}
+
+function datosIniciales() {
+  return {
+    pacientes: [
+      {id:1,nombre:"Sofía Hernández",telefono:"",
+       tratamiento:"Limpieza",duracion:45,
+       horario:"Mañana",estado:"En espera"},
+      {id:2,nombre:"Carlos Méndez",telefono:"",
+       tratamiento:"Resina",duracion:60,
+       horario:"Tarde",estado:"En espera"},
+      {id:3,nombre:"Valeria Torres",telefono:"",
+       tratamiento:"Ortodoncia",duracion:30,
+       horario:"Cualquier horario",estado:"En espera"}
+    ],
+    espacios: [
+      {id:11,fecha:fechaFutura(1),hora:"09:00",
+       duracion:60,estado:"Disponible"},
+      {id:12,fecha:fechaFutura(2),hora:"15:00",
+       duracion:90,estado:"Disponible"}
+    ]
+  };
+}
+
 let datos;
-try {const guardado=JSON.parse(localStorage.getItem(STORAGE_KEY));datos=guardado&&Array.isArray(guardado.pacientes)&&Array.isArray(guardado.espacios)?guardado:datosIniciales();}catch(e){datos=datosIniciales();}
-function guardar(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(datos));}catch(e){console.warn('No se pudo guardar en el navegador',e);}renderizar();}
-function fechaVisible(fecha){const [a,m,d]=fecha.split('-');return `${d}/${m}/${a}`;}
-function horarioDe(hora){return Number(hora.slice(0,2))<12?'Mañana':'Tarde';}
-function compatibles(paciente){return datos.espacios.filter(e=>e.estado==='Disponible'&&e.duracion>=paciente.duracion&&(paciente.horario==='Cualquier horario'||paciente.horario===horarioDe(e.hora)));}
-function textoCelda(tr,texto){const td=document.createElement('td');td.textContent=texto;tr.appendChild(td);return td;}
-function estadoEn(elemento,mensaje,esError=false){elemento.textContent=mensaje;elemento.className='status '+(esError?'error':'ok');}
-function normalizarTelefono(valor){let n=String(valor||'').replace(/\D/g,'');if(n.length===12&&n.startsWith('52'))n=n.slice(2);return n.length===10?n:null;}
-function enviarWhatsApp(pacienteId){
-const p=datos.pacientes.find(x=>x.id===pacienteId);
-if(!p||p.estado!=='En espera')return;
-let numero=normalizarTelefono(p.telefono);
-if(!numero){const nuevo=prompt(`El paciente ${p.nombre} no tiene un teléfono válido. Introduce un número mexicano de 10 dígitos:`,'');if(nuevo===null)return;numero=normalizarTelefono(nuevo);if(!numero){alert('Escribe un teléfono mexicano de 10 dígitos.');return;}p.telefono=numero;guardar();}
-const opciones=compatibles(p);
-if(!opciones.length){alert('No hay espacios compatibles con la duración y el horario preferido de este paciente. Registra un espacio disponible antes de ofrecer una cita.');return;}
-const lista=opciones.map((s,i)=>`${i+1}. ${fechaVisible(s.fecha)} a las ${s.hora} (${s.duracion} min)`).join('\n');
-const seleccion=prompt(`Selecciona el número del espacio que deseas ofrecer a ${p.nombre}:\n\n${lista}`,'1');
-if(seleccion===null)return;
-const indice=Number(seleccion)-1;
-if(!Number.isInteger(indice)||indice<0||indice>=opciones.length){alert('Selecciona un número válido de la lista.');return;}
-const s=opciones[indice];
-if(!compatibles(p).some(x=>x.id===s.id)){alert('El espacio ya no está disponible.');return;}
-const mensaje=`Hola ${p.nombre}, te contactamos de Infinite Smile, consultorio de la Dra. Angélica.\n\nTenemos un espacio disponible para tu tratamiento de ${p.tratamiento}:\nFecha: ${fechaVisible(s.fecha)}\nHora: ${s.hora}\nDuración estimada: ${p.duracion} minutos.\n\n¿Te gustaría reservar este horario? La cita estará sujeta a confirmación de disponibilidad por el consultorio.\n\nAtentamente, Virginia.`;
-const url=`https://wa.me/52${numero}?text=${encodeURIComponent(mensaje)}`;
-const ventana=window.open(url,'_blank','noopener,noreferrer');
-if(!ventana){const enlace=document.createElement('a');enlace.href=url;enlace.target='_blank';enlace.rel='noopener noreferrer';enlace.textContent='Abrir WhatsApp';const mensajeAviso=document.createElement('div');mensajeAviso.className='notice';mensajeAviso.textContent='Tu navegador bloqueó la ventana emergente. ';mensajeAviso.appendChild(enlace);$('estadoPaciente').replaceChildren(mensajeAviso);}
+try {
+  datos = JSON.parse(localStorage.getItem(CLAVE));
+  if (!datos || !Array.isArray(datos.pacientes) ||
+      !Array.isArray(datos.espacios)) {
+    datos = datosIniciales();
+  }
+} catch(e) {
+  datos = datosIniciales();
 }
-function renderizar(){
-const activos=datos.pacientes.filter(p=>p.estado==='En espera');const libres=datos.espacios.filter(s=>s.estado==='Disponible');const confirmados=datos.espacios.filter(s=>s.estado==='Confirmada').length;
-$('totalP').textContent=activos.length;$('totalE').textContent=libres.length;$('totalR').textContent=confirmados;
-const tasa=datos.espacios.length?Math.round(confirmados/datos.espacios.length*100):0;$('tasa').textContent=tasa+'%';$('metRecuperacion').textContent=tasa+'% (demo)';
-const tbody=$('tablaPacientes');tbody.replaceChildren();
-for(const p of datos.pacientes){const tr=document.createElement('tr');textoCelda(tr,p.nombre);textoCelda(tr,`${p.tratamiento} · ${p.duracion} min`);textoCelda(tr,p.horario);textoCelda(tr,p.estado);const td=document.createElement('td');const b=document.createElement('button');b.className='whatsapp';b.type='button';b.textContent='◉ Enviar WhatsApp';b.disabled=p.estado!=='En espera';b.addEventListener('click',()=>enviarWhatsApp(p.id));td.appendChild(b);tr.appendChild(td);tbody.appendChild(tr);}
-const tabla=$('tablaEspacios');tabla.replaceChildren();for(const s of [...datos.espacios].sort((a,b)=>(a.fecha+a.hora).localeCompare(b.fecha+b.hora))){const tr=document.createElement('tr');textoCelda(tr,fechaVisible(s.fecha));textoCelda(tr,s.hora);textoCelda(tr,s.duracion+' min');textoCelda(tr,s.estado);tabla.appendChild(tr);}
-const barras=$('barras');barras.replaceChildren();const tipos=[...new Set(activos.map(p=>p.tratamiento))];if(!tipos.length)barras.textContent='Sin pacientes activos';for(const tipo of tipos){const n=activos.filter(p=>p.tratamiento===tipo).length;const label=document.createElement('div');label.textContent=`${tipo} (${n})`;const bg=document.createElement('div');bg.className='bar';const relleno=document.createElement('i');relleno.style.width=`${Math.round(n/activos.length*100)}%`;bg.appendChild(relleno);barras.append(label,bg);}
-const prox=$('proximos');prox.replaceChildren();if(!libres.length)prox.textContent='No hay espacios disponibles.';for(const s of [...libres].sort((a,b)=>(a.fecha+a.hora).localeCompare(b.fecha+b.hora)).slice(0,5)){const div=document.createElement('div');div.className='slot-item';const strong=document.createElement('strong');strong.textContent=`${fechaVisible(s.fecha)} · ${s.hora}`;const p=document.createElement('p');p.textContent=`${s.duracion} minutos · Disponible`;div.append(strong,p);prox.appendChild(div);}
+
+function guardar() {
+  localStorage.setItem(CLAVE, JSON.stringify(datos));
+  renderizar();
 }
-document.querySelectorAll('[data-section]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$(btn.dataset.section).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b===btn));}));
-$('formPaciente').addEventListener('submit',e=>{e.preventDefault();const nombre=$('nombre').value.trim(),telefono=normalizarTelefono($('telefono').value);if(!nombre||!telefono){estadoEn($('estadoPaciente'),'Escribe un nombre y un teléfono mexicano válido de 10 dígitos.',true);return;}datos.pacientes.push({id:Date.now(),nombre,telefono,tratamiento:$('tratamiento').value,duracion:Number($('duracion').value),horario:$('horario').value,estado:'En espera'});guardar();e.target.reset();estadoEn($('estadoPaciente'),'Paciente agregado. El botón de WhatsApp ya aparece en su fila.');});
-$('formEspacio').addEventListener('submit',e=>{e.preventDefault();const fecha=$('fecha').value,hora=$('hora').value,duracion=Number($('minutos').value);if(!fecha||!hora){estadoEn($('estadoEspacio'),'Indica una fecha y una hora.',true);return;}if(fecha<fechaFutura(0)){estadoEn($('estadoEspacio'),'No puedes registrar una fecha anterior a hoy.',true);return;}if(datos.espacios.some(s=>s.fecha===fecha&&s.hora===hora&&s.estado==='Disponible')){estadoEn($('estadoEspacio'),'Ya existe un espacio disponible a esa fecha y hora.',true);return;}datos.espacios.push({id:Date.now(),fecha,hora,duracion,estado:'Disponible',pacienteId:null});guardar();e.target.reset();estadoEn($('estadoEspacio'),'Espacio registrado. Ya puedes ofrecerlo desde la lista de espera.');});
+
+function fechaVisible(fecha) {
+  const [a,m,d] = fecha.split("-");
+  return d+"/"+m+"/"+a;
+}
+
+function telefonoValido(valor) {
+  let n = String(valor||"").replace(/\D/g,"");
+  if(n.length===12 && n.startsWith("52")) {
+    n=n.slice(2);
+  }
+  return n.length===10 ? n : null;
+}
+
+function compatibles(p) {
+  return datos.espacios.filter(s => {
+    const periodo = Number(s.hora.slice(0,2)) < 12
+      ? "Mañana" : "Tarde";
+
+    return s.estado==="Disponible" &&
+      s.duracion >= p.duracion &&
+      (p.horario==="Cualquier horario" ||
+       p.horario===periodo);
+  });
+}
+
+function enviarWhatsApp(id) {
+  const p = datos.pacientes.find(x=>x.id===id);
+  if(!p) return;
+
+  let telefono = telefonoValido(p.telefono);
+
+  if(!telefono) {
+    const nuevo = prompt(
+      "Ingresa un teléfono mexicano de 10 dígitos para "+p.nombre
+    );
+    if(nuevo===null) return;
+
+    telefono=telefonoValido(nuevo);
+    if(!telefono) {
+      alert("El teléfono debe tener 10 dígitos.");
+      return;
+    }
+    p.telefono=telefono;
+    guardar();
+  }
+
+  const opciones = compatibles(p);
+
+  if(!opciones.length) {
+    alert("No hay espacios compatibles. Registra uno primero.");
+    return;
+  }
+
+  const lista = opciones.map((s,i)=>
+    (i+1)+". "+fechaVisible(s.fecha)+
+    " a las "+s.hora+" ("+s.duracion+" min)"
+  ).join("\n");
+
+  const seleccion = prompt(
+    "Selecciona el número del espacio para "+p.nombre+
+    ":\n\n"+lista,"1"
+  );
+
+  if(seleccion===null) return;
+
+  const indice=Number(seleccion)-1;
+
+  if(!Number.isInteger(indice) ||
+     indice<0 || indice>=opciones.length) {
+    alert("Selecciona una opción válida.");
+    return;
+  }
+
+  const s=opciones[indice];
+
+  const mensaje =
+    "Hola "+p.nombre+", te contactamos de Infinite Smile, "+
+    "consultorio de la Dra. Angélica.\n\n"+
+    "Tenemos un espacio disponible para tu tratamiento de "+
+    p.tratamiento+".\n\n"+
+    "Fecha: "+fechaVisible(s.fecha)+"\n"+
+    "Hora: "+s.hora+"\n"+
+    "Duración estimada: "+p.duracion+" minutos.\n\n"+
+    "¿Te gustaría reservar este horario?\n"+
+    "La cita está sujeta a confirmación del consultorio.\n\n"+
+    "Atentamente, Virginia.";
+
+  const url="https://wa.me/52"+telefono+
+    "?text="+encodeURIComponent(mensaje);
+
+  window.open(url,"_blank");
+}
+
+function celda(tr,texto) {
+  const td=document.createElement("td");
+  td.textContent=texto;
+  tr.appendChild(td);
+  return td;
+}
+
+function renderizar() {
+  const activos=datos.pacientes.filter(
+    p=>p.estado==="En espera"
+  );
+  const libres=datos.espacios.filter(
+    s=>s.estado==="Disponible"
+  );
+
+  $("totalP").textContent=activos.length;
+  $("totalE").textContent=libres.length;
+  $("totalR").textContent="0";
+  $("tasa").textContent="0%";
+
+  const tabla=$("tablaPacientes");
+  tabla.replaceChildren();
+
+  datos.pacientes.forEach(p=>{
+    const tr=document.createElement("tr");
+
+    celda(tr,p.nombre);
+    celda(tr,p.tratamiento+" · "+p.duracion+" min");
+    celda(tr,p.horario);
+    celda(tr,p.estado);
+
+    const td=document.createElement("td");
+    const boton=document.createElement("button");
+
+    boton.className="whatsapp";
+    boton.type="button";
+    boton.textContent="Enviar WhatsApp";
+    boton.addEventListener("click",()=>enviarWhatsApp(p.id));
+
+    td.appendChild(boton);
+    tr.appendChild(td);
+    tabla.appendChild(tr);
+  });
+
+  const tablaEspacios=$("tablaEspacios");
+  tablaEspacios.replaceChildren();
+
+  datos.espacios.forEach(s=>{
+    const tr=document.createElement("tr");
+    celda(tr,fechaVisible(s.fecha));
+    celda(tr,s.hora);
+    celda(tr,s.duracion+" min");
+    celda(tr,s.estado);
+    tablaEspacios.appendChild(tr);
+  });
+
+  const barras=$("barras");
+  barras.replaceChildren();
+
+  const tipos=[...new Set(activos.map(p=>p.tratamiento))];
+
+  tipos.forEach(tipo=>{
+    const cantidad=activos.filter(
+      p=>p.tratamiento===tipo
+    ).length;
+
+    const titulo=document.createElement("div");
+    titulo.textContent=tipo+" ("+cantidad+")";
+
+    const fondo=document.createElement("div");
+    fondo.className="bar";
+
+    const relleno=document.createElement("i");
+    relleno.style.width=
+      Math.round(cantidad/activos.length*100)+"%";
+
+    fondo.appendChild(relleno);
+    barras.append(titulo,fondo);
+  });
+
+  const proximos=$("proximos");
+  proximos.replaceChildren();
+
+  libres.forEach(s=>{
+    const p=document.createElement("p");
+    p.textContent=fechaVisible(s.fecha)+
+      " · "+s.hora+" · "+s.duracion+" min";
+    proximos.appendChild(p);
+  });
+}
+
+document.querySelectorAll("[data-page]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".section").forEach(
+      s=>s.classList.remove("active")
+    );
+    $(btn.dataset.page).classList.add("active");
+
+    document.querySelectorAll("nav button").forEach(
+      b=>b.classList.toggle("active",b===btn)
+    );
+  });
+});
+
+$("formPaciente").addEventListener("submit",e=>{
+  e.preventDefault();
+
+  const telefono=telefonoValido($("telefono").value);
+
+  if(!telefono) {
+    alert("Ingresa un teléfono mexicano de 10 dígitos.");
+    return;
+  }
+
+  datos.pacientes.push({
+    id:Date.now(),
+    nombre:$("nombre").value.trim(),
+    telefono:telefono,
+    tratamiento:$("tratamiento").value,
+    duracion:Number($("duracion").value),
+    horario:$("horario").value,
+    estado:"En espera"
+  });
+
+  guardar();
+  e.target.reset();
+  alert("Paciente registrado correctamente.");
+});
+
+$("formEspacio").addEventListener("submit",e=>{
+  e.preventDefault();
+
+  datos.espacios.push({
+    id:Date.now(),
+    fecha:$("fecha").value,
+    hora:$("hora").value,
+    duracion:Number($("minutos").value),
+    estado:"Disponible"
+  });
+
+  guardar();
+  e.target.reset();
+  alert("Espacio registrado correctamente.");
+});
+
 renderizar();
 </script>
 </body>
