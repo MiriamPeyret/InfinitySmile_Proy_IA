@@ -172,8 +172,35 @@ document.getElementById('formPaciente').addEventListener('submit',function(e){
  const n=document.getElementById('nombre').value;
  const t=document.getElementById('tratamiento').value;
  const row=document.createElement('tr');
- row.innerHTML='<td></td><td></td><td>En espera</td>';
- row.cells[0].textContent=n;row.cells[1].textContent=t;
+
+row.innerHTML = `
+  <td></td>
+  <td></td>
+  <td>En espera</td>
+  <td></td>
+`;
+
+row.cells[0].textContent = n;
+row.cells[1].textContent = t;
+
+const telefono = document.getElementById('telefono').value;
+
+const boton = document.createElement('button');
+boton.className = 'primary';
+boton.textContent = 'Enviar WhatsApp';
+
+boton.addEventListener('click', function() {
+  const fecha = prompt('Fecha propuesta (DD/MM/AAAA):');
+  if (!fecha) return;
+
+  const hora = prompt('Hora propuesta (HH:MM):');
+  if (!hora) return;
+
+  enviarWhatsApp(n, telefono, fecha, hora);
+});
+
+row.cells[3].appendChild(boton);
+
  document.getElementById('tablaPacientes').appendChild(row);
  pacientes++;document.getElementById('totalP').textContent=pacientes;
  this.reset();alert('Paciente agregado a la lista de espera.');
