@@ -179,13 +179,39 @@ document.getElementById('formEspacio').addEventListener('submit',function(e){
 });
 
 
+// Función para abrir WhatsApp con mensaje personalizado
+function enviarWhatsApp(nombre, telefono, fecha, hora) {
+  const numero = telefono.replace(/\D/g, "");
+
+  if (numero.length !== 10) {
+    alert("El teléfono debe tener 10 dígitos mexicanos.");
+    return;
+  }
+
+  const mensaje =
+    `Hola ${nombre}, te contactamos de Infinite Smile, ` +
+    `consultorio de la Dra. Angélica.\n\n` +
+    `Tenemos un espacio disponible para tu cita dental:\n` +
+    `Fecha: ${fecha}\n` +
+    `Hora: ${hora}\n\n` +
+    `¿Te gustaría confirmar este horario?\n\n` +
+    `Atentamente, Virginia.`;
+
+  const url = "https://wa.me/52" +
+    numero +
+    "?text=" +
+    encodeURIComponent(mensaje);
+
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+</script>
+</body>
+</html>
+
 
 </script>
 
 
-</script>
-
-  
-</script>
 </body>
 </html>
